@@ -41,7 +41,7 @@ sealed class MovingWindowFilter {
         latestSamples.clear()
         if(newValues.isNotEmpty()) {
             for(i in 0..newValues.size) {
-                latestSamples.add(0, newValues[0])
+                latestSamples.add(i, newValues[i])
             }
         }
     }
