@@ -3,21 +3,29 @@ package frc.robot
 import java.util.LinkedList
 
 abstract class MovingWindowFilter() {
+    /**
+     * The number of samples to be included in the calculation. If not enough samples were
+     * provided yet, then the calculation will simply use less samples.
+     */
     abstract var window: Int
-    abstract val calculation: (LinkedList<Double>) -> Double
 
-    private val latestValues = LinkedList<Double>()
+    /**
+     * The calculation to use on the samples list in [calculate]
+     */
+    protected abstract val calculation: (LinkedList<Double>) -> Double
 
-    fun calculate(newValue: Double): Double {
-        while(latestValues.size >= window) latestValues.removeLast()
-        latestValues.addFirst(newValue)
-        return calculation.invoke(latestValues)
+    private val latestSamples = LinkedList<Double>()
+
+    fun calculate(newSample: Double): Double {
+        while(latestSamples.size >= window) latestSamples.removeLast()
+        latestSamples.addFirst(newSample)
+        return calculation.invoke(latestSamples)
     }
 
     fun reset(newValues: DoubleArray) {
-        latestValues.clear()
+        latestSamples.clear()
         for(i in 0..newValues.size) {
-            latestValues[i] = newValues[i]
+            latestSamples[i] = newValues[i]
         }
     }
 
@@ -30,6 +38,6 @@ abstract class MovingWindowFilter() {
     }
 
     fun empty() {
-        latestValues.clear()
+        latestSamples.clear()
     }
 }
