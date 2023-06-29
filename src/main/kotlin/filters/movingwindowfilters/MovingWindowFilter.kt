@@ -2,7 +2,10 @@ package filters.movingwindowfilters
 
 import java.util.LinkedList
 
-abstract class MovingWindowFilter() {
+/**
+ * A base class for a moving window filter.
+ */
+sealed class MovingWindowFilter {
     /**
      * The number of samples to be included in the calculation. If not enough samples were
      * provided yet, then the calculation will simply use less samples.
