@@ -39,12 +39,9 @@ sealed class MovingWindowFilter {
      */
     fun reset(newValues: DoubleArray) {
         if(newValues.isNotEmpty()) {
-            val newValuesSize = newValues.size
-            for(i in 0..newValuesSize) {
-                latestSamples[i] = newValues[i]
-            }
-            while(latestSamples.size > newValuesSize) {
-                latestSamples.removeLast()
+            latestSamples.clear()
+            for(i in 0..newValues.size) {
+                latestSamples.add(0, newValues[0])
             }
         }
     }
