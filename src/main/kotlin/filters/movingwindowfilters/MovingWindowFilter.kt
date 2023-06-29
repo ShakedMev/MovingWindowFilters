@@ -38,9 +38,14 @@ sealed class MovingWindowFilter {
      * > To clear all the previous samples without providing new ones, use [clear].
      */
     fun reset(newValues: DoubleArray) {
-        latestSamples.clear()
-        for(i in 0..newValues.size) {
-            latestSamples[i] = newValues[i]
+        if(newValues.isNotEmpty()) {
+            val newValuesSize = newValues.size
+            for(i in 0..newValuesSize) {
+                latestSamples[i] = newValues[i]
+            }
+            while(latestSamples.size > newValuesSize) {
+                latestSamples.removeLast()
+            }
         }
     }
 
