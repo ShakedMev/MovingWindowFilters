@@ -29,3 +29,4 @@ bin/
 .DS_Store
 .idea/vcs.xml
 MovingWindowFilters.iml
+/src/test/kotlin/ExampleTest.kt
