@@ -19,7 +19,7 @@ class MovingMedianFilter(override var window: Int) : MovingWindowFilter() {
 }
 
 private fun median(linkedList: LinkedList<Double>): Double {
-    val list = linkedList.toDoubleArray().sorted()
+    val list = linkedList.sorted()
     val listSize = list.size
     if(listSize == 2) return list.average()
 
@@ -27,6 +27,6 @@ private fun median(linkedList: LinkedList<Double>): Double {
         (list[listSize / 2] + list[(listSize / 2) - 1]) / 2.0
     }
     else {
-        list[((listSize / 2) + 0.5).toInt()]
+        list[((listSize / 2) - 0.5).toInt()]
     }
 }
