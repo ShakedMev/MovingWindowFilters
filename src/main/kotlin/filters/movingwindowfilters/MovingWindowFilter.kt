@@ -57,6 +57,10 @@ sealed class MovingWindowFilter {
         reset(newValues.toDoubleArray())
     }
 
+    fun reset(newValues: Array<Double>) {
+        reset(newValues.toDoubleArray())
+    }
+
     /**
      * Clears all the previous samples, and fills the samples list with the new value.
      * To clear all the previous samples without providing new ones, use [clear].
