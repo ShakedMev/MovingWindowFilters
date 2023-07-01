@@ -2,18 +2,12 @@ package filters.movingwindowfilters
 
 import java.util.LinkedList
 
-/**
- * A base class for a moving window filter.
- */
-sealed class MovingWindowFilter {
-    /**
-     * The number of samples to be included in the calculation.
-     */
+/** A base class for a moving window filter. */
+abstract class MovingWindowFilter {
+    /** The number of samples to be included in the calculation. */
     abstract var window: Int
 
-    /**
-     * The calculation to use on the samples list in [calculate].
-     */
+    /** The calculation to use on the samples list in [calculate]. */
     protected abstract val calculation: (LinkedList<Double>) -> Double
 
     private val latestSamples = LinkedList<Double>()
