@@ -40,7 +40,7 @@ sealed class MovingWindowFilter {
     fun reset(newValues: DoubleArray) {
         latestSamples.clear()
         if(newValues.isNotEmpty()) {
-            for(i in 0..newValues.size) {
+            for(i in newValues.indices) {
                 latestSamples.add(i, newValues[i])
             }
         }
