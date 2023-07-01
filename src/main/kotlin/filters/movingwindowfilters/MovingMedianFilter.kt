@@ -14,7 +14,12 @@ import java.util.LinkedList
  *                  cancel out dynamics that happen in a shorter time frame than this,
  *                  and that will also be the approximate phase lag.
  */
-class MovingMedianFilter(override var window: Int) : MovingWindowFilter() {
+class MovingMedianFilter(window: Int) : MovingWindowFilter() {
+    override var window: Int = window
+        set(value) {
+            require(value > 0) {"window must be positive"}
+            field = value
+        }
     override val calculation = {values: LinkedList<Double> -> median(values) }
 }
 
